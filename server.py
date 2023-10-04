@@ -1,3 +1,4 @@
+import time
 import rpyc
 
 class MyService(rpyc.Service):
@@ -13,6 +14,15 @@ class MyService(rpyc.Service):
     exposed_the_real_answer_though = 43 # este é um atributo exposto
     def get_question(self): # este método não é exposto
         return "Qual é a cor do cavalo branco de Napoleão?"
+    
+    def exposed_get_sum(self, vetor):
+        start = time.time()
+        resp = 0
+        for i in vetor:
+            resp += i
+        end = time.time()
+        print(end-start)
+        return resp
 
 #Para iniciar o servidor
 if __name__ == "__main__":
